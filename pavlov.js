@@ -29,9 +29,9 @@ function getTransitionsFromCount(P_){
       var visitCount = Object.keys(P_[state][action]).reduce(function(sum,state_){
         return sum + P_[state][action][state_];
       },0);
-      Object.keys(P_[state][action]).map(function(state_){
+      Object.keys(P_[state][action]).forEach(function(state_){
         console.log(P_[state][action][state_],visitCount)
-        return P_[state][action][state_] / visitCount;
+        P_[state][action][state_] = P_[state][action][state_] / visitCount;
       });
     });
   });
