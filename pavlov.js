@@ -23,14 +23,13 @@ function getRewardsFromCount(R_){
   return R;
 };
 
-function getTransitionsFromCount(P_){
+function getTransProbsFromCount(P_){
   Object.keys(P_).forEach(function(state){
     Object.keys(P_[state]).forEach(function(action){
       var visitCount = Object.keys(P_[state][action]).reduce(function(sum,state_){
         return sum + P_[state][action][state_];
       },0);
       Object.keys(P_[state][action]).forEach(function(state_){
-        console.log(P_[state][action][state_],visitCount)
         P_[state][action][state_] = P_[state][action][state_] / visitCount;
       });
     });
@@ -47,12 +46,31 @@ function makeMDP(observations,rewards){
   });
 
   var R = getRewardsFromCount(R_);
-  var P = getTransitionsFromCount(P_);
+  var P = getTransProbsFromCount(P_);
 
-  return P;
+  return [P,R];
+};
+
+function policy(P,R){
+  var policy = {}
+  var V = {};
+  R.forEach(function(state){
+    V[state] = 0;
+  });
+
+  var arg, val;
+  Object.keys(P).forEach(function(state){
+    var futureVal = -Infinity;
+    Object.keys(P[state]).forEach(function(action){
+      arg = 0;
+      val = 0;
+      //
+    });
+  });
+
 };
 
 var o1 = [{state:'s1', action:'a1'}, {state:'s2', action:'a1'},{state:'s1',action:'a2'}, {state:'s2', action:'a2'}, {state:'s2', action:'a1'}];
 var o2 = [{state:'s2', action:'a1'}, {state:'s1', action:'a2'}, {state:'s2', action:'a1'}, {state:'s2',action:'a1'}];
 obs = [o1,o2]
-console.log(makeMDP(obs, [1,2]))
+console.log(makeMDP(obs, [1,2])[0])
