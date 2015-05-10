@@ -26,7 +26,13 @@ function getRewardsFromCount(R_){
 function getTransitionsFromCount(P_){
   Object.keys(P_).forEach(function(state){
     Object.keys(P_[state]).forEach(function(action){
-      //count transitions over all actions
+      var visitCount = Object.keys(P_[state][action]).reduce(function(sum,state_){
+        return sum + P_[state][action][state_];
+      },0);
+      Object.keys(P_[state][action]).map(function(state_){
+        console.log(P_[state][action][state_],visitCount)
+        return P_[state][action][state_] / visitCount;
+      });
     });
   });
   return P_;
@@ -43,10 +49,10 @@ function makeMDP(observations,rewards){
   var R = getRewardsFromCount(R_);
   var P = getTransitionsFromCount(P_);
 
-  return P_;
+  return P;
 };
 
-var o1 = [{state:'s1', action:'a1'}, {state:'s2', action:'a1'},{state:'s1',action:'a2'}];
-var o2 = [{state:'s2', action:'a1'}, {state:'s2', action:'a2'}, {state:'s3', action:'a1'}];
+var o1 = [{state:'s1', action:'a1'}, {state:'s2', action:'a1'},{state:'s1',action:'a2'}, {state:'s2', action:'a2'}, {state:'s2', action:'a1'}];
+var o2 = [{state:'s2', action:'a1'}, {state:'s1', action:'a2'}, {state:'s2', action:'a1'}, {state:'s2',action:'a1'}];
 obs = [o1,o2]
 console.log(makeMDP(obs, [1,2]))
