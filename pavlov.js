@@ -51,26 +51,57 @@ function makeMDP(observations,rewards){
   return [P,R];
 };
 
-function policy(P,R){
+function checkConverge(V,V_){
+  var totalDif = 0;
+  var totalOld = 0;
+  Object.keys(V).forEach(function(state){
+    totalDif += Math.abs(V[state] - V_[state]);
+    totalOld += Math.abs(V_[state]);
+  });
+  return (totalDif < 0.001*totalOld)
+};
+
+function copyObj(obj){
+  var obj_ = {};
+  Object.keys(obj).forEach(function(key){
+    obj_[key] = obj[key];
+  });
+  return obj_;
+};
+
+function policyFormatted(P,R){
   var policy = {}
   var V = {};
-  R.forEach(function(state){
+  Object.keys(R).forEach(function(state){
     V[state] = 0;
   });
 
-  var arg, val;
-  Object.keys(P).forEach(function(state){
-    var futureVal = -Infinity;
-    Object.keys(P[state]).forEach(function(action){
-      arg = 0;
-      val = 0;
-      //
+  var val;
+  var notConverged = true;
+  while (notConverged){
+    var V_ = copyObj(V);
+    Object.keys(P).forEach(function(state){
+      var futureVal = -Infinity;
+      Object.keys(P[state]).forEach(function(action){
+        val = 0;
+        Object.keys(P[state][action]).forEach(function(state_){
+          val += (P[state][action][state_] * V[state_]);
+        });
+        if (val > futureVal){
+          futureVal = val;
+          policy[state] = action;
+        }
+        V[state] = R[state] + futureVal;
+      });
     });
-  });
-
+    notConverged = !checkConverge(V,V_);
+  };
+  return policy;
 };
 
-var o1 = [{state:'s1', action:'a1'}, {state:'s2', action:'a1'},{state:'s1',action:'a2'}, {state:'s2', action:'a2'}, {state:'s2', action:'a1'}];
-var o2 = [{state:'s2', action:'a1'}, {state:'s1', action:'a2'}, {state:'s2', action:'a1'}, {state:'s2',action:'a1'}];
-obs = [o1,o2]
-console.log(makeMDP(obs, [1,2])[0])
+function policy(observations, rewards){
+  var MDP = makeMDP(observations, rewards);
+  return policyFormatted(MDP[0], MDP[1]);
+};
+
+
