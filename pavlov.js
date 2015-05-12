@@ -48,6 +48,7 @@ function makeMDP(observations,rewards){
   var R = getRewardsFromCount(R_);
   var P = getTransProbsFromCount(P_);
 
+  console.log("R: ", R, "P: ",P)
   return [P,R];
 };
 
@@ -99,9 +100,7 @@ function policyFormatted(P,R){
   return policy;
 };
 
-function policy(observations, rewards){
+var policy = module.exports.policy = function(observations, rewards){
   var MDP = makeMDP(observations, rewards);
   return policyFormatted(MDP[0], MDP[1]);
 };
-
-
