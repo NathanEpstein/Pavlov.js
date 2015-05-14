@@ -1,5 +1,10 @@
-describe('test test',function(){
-  it('should evaluate things correctly',function(){
-    expect(1+1).toBe(2);
+// 'use strict';
+
+var pavlov = require('../../pavlov.js');
+var data = require('./testData.js')
+
+describe('rewardsAndTransitions',function(){
+  it('should produce the correct rewards',function(){
+    console.log(pavlov.rewardsAndTransitions(data.observations,data.rewards));
   });
 });

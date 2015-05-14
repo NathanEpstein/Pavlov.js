@@ -1,5 +1,7 @@
+// 'use strict';
+
 function countSteps(observation,reward){
-  stepReward = reward/observation.length;
+  var stepReward = reward/observation.length;
 
   observation.forEach(function(step,i){
     //initialization
@@ -37,9 +39,9 @@ function getTransProbsFromCount(P_){
   return P_;
 };
 
+var P_ = {};
+var R_ = {};
 var rewardsAndTransitions = module.exports.rewardsAndTransitions = function(observations,rewards){
-  P_ = {};
-  R_ = {};
 
   observations.forEach(function(observation,i){
     countSteps(observation,rewards[i]);
