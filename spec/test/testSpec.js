@@ -1,4 +1,4 @@
-// 'use strict';
+'use strict';
 
 var pavlov = require('../../pavlov.js');
 var data = require('./testData.js')

@@ -1,4 +1,4 @@
-// 'use strict';
+'use strict';
 
 function countSteps(observation,reward){
   var stepReward = reward/observation.length;
