@@ -4,7 +4,7 @@ var obs1 = [
   {state:"prize", action:"stay"},
   {state:"notPrize",action:"move"},
   {state:"notPrize",action:"move"}
-]
+];
 
 var obs2 = [
   {state:"notPrize", action:"stay"},
@@ -12,4 +12,5 @@ var obs2 = [
   {state:"prize", action:"move"},
   {state:"prize", action:"move"},
   {state:"notPrize", action:"move"},
-]
+];
+
