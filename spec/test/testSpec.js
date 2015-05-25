@@ -65,6 +65,7 @@ describe('random policy', function(){
   var policy = pavlov.policy(random.observations,random.rewards);
 
   it('should produce the correct policy', function(){
-    //test goes here...
+    expect(policy['prize']).toBe('stay');
+    expect(policy['notPrize']).toBe('move');
   });
 });

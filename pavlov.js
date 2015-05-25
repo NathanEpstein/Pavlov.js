@@ -99,6 +99,7 @@ function policyFormatted(P,R){
     });
     notConverged = !checkConverge(V,V_);
   };
+
   return policy;
 };
 
