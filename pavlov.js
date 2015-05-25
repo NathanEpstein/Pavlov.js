@@ -51,6 +51,7 @@ var rewardsAndTransitions = module.exports.rewardsAndTransitions = function(obse
   var R = getRewardsFromCount(R_);
   var P = getTransProbsFromCount(P_);
 
+  console.log("transition",P, 'reward',R)
   return [P,R];
 };
 
@@ -87,6 +88,14 @@ function policyFormatted(P,R){
       var futureVal = -Infinity;
       Object.keys(P[state]).forEach(function(action){
         val = 0;
+        //assume uniform transition probabilities if no data is available
+        if (Object.keys(P[state][action]).length == 0){
+          var states = Object.keys(P);
+          var uniformProb = 1/states.length;
+          states.forEach(function(state_){
+            P[state][action][state_] = uniformProb;
+          });
+        }
         Object.keys(P[state][action]).forEach(function(state_){
           val += (P[state][action][state_] * V[state_]);
         });
@@ -99,7 +108,7 @@ function policyFormatted(P,R){
     });
     notConverged = !checkConverge(V,V_);
   };
-
+  console.log(policy)
   return policy;
 };
 

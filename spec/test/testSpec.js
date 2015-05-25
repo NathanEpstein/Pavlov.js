@@ -18,8 +18,9 @@ describe('deterministic rewardsAndTransitions',function(){
   });
 
   it('should produce the correct rewards',function(){
-    expect(R['Prize']).toBe(0.75);
-    expect(R['A']).toBe(0.25);
+    expect(R['Prize']).toBe(1/3);
+    expect(R['Trap']).toBe(1/3);
+    expect(R['A']).toBe(1/9);
     expect(R['B']).toBe(0);
     expect(R['C']).toBe(0);
     expect(R['D']).toBe(0);
@@ -31,10 +32,9 @@ describe('deterministic policy', function(){
 
   it('should produce the correct policy', function(){
     expect(policy['A']).toBe('L');
-    expect(policy['B']).toBe('B');
+    expect(policy['B']).toBe('L');
     expect(policy['C']).toBe('F');
     expect(policy['D']).toBe('L');
-    expect(policy['Prize']).toBe('L');
 
   });
 });
