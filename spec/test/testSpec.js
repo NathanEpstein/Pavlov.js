@@ -17,7 +17,7 @@ describe('deterministic rewardsAndTransitions',function(){
     expect(P['A']['B']['C']).toBe(1);
   });
 
-  it('should produce the correct rewards', function(){
+  it('should produce the correct rewards',function(){
     expect(R['Prize']).toBe(0.75);
     expect(R['A']).toBe(0.25);
     expect(R['B']).toBe(0);
@@ -26,13 +26,44 @@ describe('deterministic rewardsAndTransitions',function(){
   });
 });
 
-// describe('random rewardsAndTransitions',function(){
-//   var rewardsAndTransitions = pavlov.rewardsAndTransitions(determ.observations,determ.rewards);
-//   var R = rewardsAndTransitions[1];
-//   var P = rewardsAndTransitions[0];
+describe('deterministic policy', function(){
+  var policy = pavlov.policy(determ.observations,determ.rewards);
 
-//   it('should produce the correct transitions',function(){
-//     // console.log(P)
+  it('should produce the correct policy', function(){
+    // test goes here...
+    console.log(policy)
+  });
+});
 
-//   });
-// });
+describe('random rewardsAndTransitions',function(){
+  var rewardsAndTransitions = pavlov.rewardsAndTransitions(random.observations,random.rewards);
+  var R = rewardsAndTransitions[1];
+  var P = rewardsAndTransitions[0];
+
+  it('should produce the correct transitions',function(){
+    expect(P['prize']['stay']['prize']).toBe(2/3);
+    expect(P['prize']['move']['prize']).toBe(1/3);
+    expect(P['prize']['stay']['notPrize']).toBe(1/3);
+    expect(P['prize']['move']['notPrize']).toBe(2/3);
+    expect(P['notPrize']['stay']['notPrize']).toBe(2/3);
+    expect(P['notPrize']['move']['notPrize']).toBe(1/3);
+    expect(P['notPrize']['stay']['prize']).toBe(1/3);
+    expect(P['notPrize']['move']['prize']).toBe(2/3);
+    console.log(P)
+  });
+
+  it('should produce the correct rewards',function(){
+    expect(R['prize']).toBe((4/5 + 4/5 + 9/5) /7);
+    expect(R['notPrize']).toBe(18/40);
+    console.log(R)
+  });
+});
+
+describe('random policy', function(){
+  var policy = pavlov.policy(random.observations,random.rewards);
+
+  it('should produce the correct policy', function(){
+    //test goes here...
+    console.log(policy)
+  });
+});
