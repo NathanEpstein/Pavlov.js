@@ -45,19 +45,15 @@ describe('random rewardsAndTransitions',function(){
   var P = rewardsAndTransitions[0];
 
   it('should produce the correct transitions',function(){
-    expect(P['prize']['stay']['prize']).toBe(2/3);
-    expect(P['prize']['move']['prize']).toBe(1/3);
-    expect(P['prize']['stay']['notPrize']).toBe(1/3);
-    expect(P['prize']['move']['notPrize']).toBe(2/3);
-    expect(P['notPrize']['stay']['notPrize']).toBe(2/3);
-    expect(P['notPrize']['move']['notPrize']).toBe(1/3);
-    expect(P['notPrize']['stay']['prize']).toBe(1/3);
-    expect(P['notPrize']['move']['prize']).toBe(2/3);
+    expect(P['notBroke']['bet']['broke']).toBe(0.5);
+    expect(P['notBroke']['bet']['notBroke']).toBe(0.5);
+    expect(P['notBroke']['notBet']['notBroke']).toBe(1);
+    expect(P['broke']['hangout']['broke']).toBe(1);
   });
 
   it('should produce the correct rewards',function(){
-    expect(R['prize']).toBe((4/5 + 4/5 + 9/5) /7);
-    expect(R['notPrize']).toBe(18/40);
+    expect(R['broke']).toBe((-2/5 - 1/3)/3);
+    expect(R['notBroke']).toBe((-3/5 - 2/3)/8);
   });
 });
 
@@ -65,7 +61,7 @@ describe('random policy', function(){
   var policy = pavlov.policy(random.observations,random.rewards);
 
   it('should produce the correct policy', function(){
-    expect(policy['prize']).toBe('stay');
-    expect(policy['notPrize']).toBe('move');
+    expect(policy['notBroke']).toBe('notBet');
+    expect(policy['broke']).toBe('hangout');
   });
 });

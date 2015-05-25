@@ -51,7 +51,6 @@ var rewardsAndTransitions = module.exports.rewardsAndTransitions = function(obse
   var R = getRewardsFromCount(R_);
   var P = getTransProbsFromCount(P_);
 
-  console.log("transition",P, 'reward',R)
   return [P,R];
 };
 
@@ -108,7 +107,6 @@ function policyFormatted(P,R){
     });
     notConverged = !checkConverge(V,V_);
   };
-  console.log(policy)
   return policy;
 };
 
