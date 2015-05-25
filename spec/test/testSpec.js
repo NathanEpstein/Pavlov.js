@@ -30,8 +30,12 @@ describe('deterministic policy', function(){
   var policy = pavlov.policy(determ.observations,determ.rewards);
 
   it('should produce the correct policy', function(){
-    // test goes here...
-    console.log(policy)
+    expect(policy['A']).toBe('L');
+    expect(policy['B']).toBe('B');
+    expect(policy['C']).toBe('F');
+    expect(policy['D']).toBe('L');
+    expect(policy['Prize']).toBe('L');
+
   });
 });
 
@@ -49,13 +53,11 @@ describe('random rewardsAndTransitions',function(){
     expect(P['notPrize']['move']['notPrize']).toBe(1/3);
     expect(P['notPrize']['stay']['prize']).toBe(1/3);
     expect(P['notPrize']['move']['prize']).toBe(2/3);
-    console.log(P)
   });
 
   it('should produce the correct rewards',function(){
     expect(R['prize']).toBe((4/5 + 4/5 + 9/5) /7);
     expect(R['notPrize']).toBe(18/40);
-    console.log(R)
   });
 });
 
@@ -64,6 +66,5 @@ describe('random policy', function(){
 
   it('should produce the correct policy', function(){
     //test goes here...
-    console.log(policy)
   });
 });
