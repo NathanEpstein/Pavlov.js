@@ -1,5 +1,7 @@
-function countSteps(observation,reward){
-  stepReward = reward/observation.length;
+'use strict';
+
+function countSteps(observation,reward,P_,R_){
+  var stepReward = reward/observation.length;
 
   observation.forEach(function(step,i){
     //initialization
@@ -38,11 +40,12 @@ function getTransProbsFromCount(P_){
 };
 
 var rewardsAndTransitions = module.exports.rewardsAndTransitions = function(observations,rewards){
-  P_ = {};
-  R_ = {};
+
+  var P_ = {};
+  var R_ = {};
 
   observations.forEach(function(observation,i){
-    countSteps(observation,rewards[i]);
+    countSteps(observation,rewards[i],P_,R_);
   });
 
   var R = getRewardsFromCount(R_);
@@ -84,6 +87,14 @@ function policyFormatted(P,R){
       var futureVal = -Infinity;
       Object.keys(P[state]).forEach(function(action){
         val = 0;
+        //assume uniform transition probabilities if no data is available
+        if (Object.keys(P[state][action]).length == 0){
+          var states = Object.keys(P);
+          var uniformProb = 1/states.length;
+          states.forEach(function(state_){
+            P[state][action][state_] = uniformProb;
+          });
+        }
         Object.keys(P[state][action]).forEach(function(state_){
           val += (P[state][action][state_] * V[state_]);
         });
