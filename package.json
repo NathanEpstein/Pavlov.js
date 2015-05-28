@@ -1,5 +1,5 @@
 {
-  "name": "Pavlov.js",
+  "name": "pavlov",
   "version": "1.0.0",
   "description": "Reinforcement learning using Markov Decision Processes",
   "main": "pavlov.js",

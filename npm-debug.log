@@ -1,0 +1,69 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'publish' ]
+2 info using npm@2.7.5
+3 info using node@v0.12.2
+4 verbose node symlink /usr/local/bin/node
+5 verbose publish [ '.' ]
+6 silly cache add args [ '.', null ]
+7 verbose cache add spec .
+8 silly cache add parsed spec { raw: '.',
+8 silly cache add   scope: null,
+8 silly cache add   name: null,
+8 silly cache add   rawSpec: '.',
+8 silly cache add   spec: '/Users/nathanepstein/Desktop/Pavlov.js',
+8 silly cache add   type: 'directory' }
+9 verbose addLocalDirectory /Users/nathanepstein/.npm/Pavlov.js/1.0.0/package.tgz not in flight; packing
+10 verbose tar pack [ '/Users/nathanepstein/.npm/Pavlov.js/1.0.0/package.tgz',
+10 verbose tar pack   '/Users/nathanepstein/Desktop/Pavlov.js' ]
+11 verbose tarball /Users/nathanepstein/.npm/Pavlov.js/1.0.0/package.tgz
+12 verbose folder /Users/nathanepstein/Desktop/Pavlov.js
+13 info prepublish Pavlov.js@1.0.0
+14 verbose addLocalTarball adding from inside cache /Users/nathanepstein/.npm/Pavlov.js/1.0.0/package.tgz
+15 silly cache afterAdd Pavlov.js@1.0.0
+16 verbose afterAdd /Users/nathanepstein/.npm/Pavlov.js/1.0.0/package/package.json not in flight; writing
+17 verbose afterAdd /Users/nathanepstein/.npm/Pavlov.js/1.0.0/package/package.json written
+18 silly publish { name: 'Pavlov.js',
+18 silly publish   version: '1.0.0',
+18 silly publish   description: 'Reinforcement learning using Markov Decision Processes',
+18 silly publish   main: 'pavlov.js',
+18 silly publish   scripts: { test: 'jasmine' },
+18 silly publish   repository:
+18 silly publish    { type: 'git',
+18 silly publish      url: 'https://github.com/NathanEpstein/Pavlov.js.git' },
+18 silly publish   keywords: [ 'learning', 'markov', 'decision' ],
+18 silly publish   author: { name: 'Nathan Epstein' },
+18 silly publish   license: 'MIT',
+18 silly publish   bugs: { url: 'https://github.com/NathanEpstein/Pavlov.js/issues' },
+18 silly publish   homepage: 'https://github.com/NathanEpstein/Pavlov.js',
+18 silly publish   readme: '# Pavlov.js\n\n<img src="./MDP.png">\n\n##About\n\nPavlov.js uses Markov Decision Processes to implement reinforcement learning in JavaScript. For more on reinforcement learning, check out this <a href="http://nepste.in/jekyll/update/2015/02/22/MDP.html">blog post.</a>\n\n## Installation\n\n`npm install Pavlov.js --save`\n\n\n## Documentation & Examples\n\n###Example 1\n\n```javascript\nvar pavlov = require(\'Pavlov.js\');\n\nvar obs1 = [\n  {state:"notBroke", action:"notBet"},\n  {state:"notBroke", action:"bet"},\n  {state:"notBroke",action:"bet"},\n  {state:"broke", action:"hangout"},\n  {state:"broke",action:"hangout"}\n];\n\nvar obs2 = [\n  {state:"notBroke", action:"bet"},\n  {state:"notBroke",action:"bet"},\n  {state:"broke", action:"hangout"}\n];\n\nvar obs3 = [\n  {state:"notBroke", action:"notBet"},\n  {state:"notBroke", action:"notBet"},\n  {state:"notBroke", action:"notBet"}\n];\n\nvar observations = [obs1,obs2,obs3];\nvar rewards = [-1,-1,0];\n\nconsole.log(pavlov.policy(observations, rewards));\n\n// { notBroke: \'notBet\', broke: \'hangout\' }\n\n```\n\n\n### Example 2\n\n<img src="./example.png">\n\n```javascript\nvar pavlov = require(\'Pavlov.js\');\n\nvar obs1 = [{state:"A", action:"R"}, {state:"B", action:"B"}];\nvar obs2 = [{state:"A", action:"B"}, {state:"C", action:"R"}];\nvar obs3 = [{state:"A", action:"L"}, {state:"Prize", action:"R"}, {state:"Trap", action:"F"}];\nvar obs4 = [{state:"A", action:"L"}, {state:"Prize", action:"L"},{state:"Trap", action:"B"}];\nvar obs5 = [{state:"B",action:"B"},{state:"D",action:"L"}, {state: "C",action:"F"}, {state:"A",action:"R"}];\nvar obs6 = [{state:"C",action:"R"},{state:"D",action:"F"},{state:"B", action:"L"}, {state:"A", action:"L"}];\n\nobservations = [obs1,obs2,obs3,obs4,obs5,obs6];\nrewards = [0,0,1,1,0,0];\n\nconsole.log(pavlov.policy(observations,rewards));\n\n// { A: \'L\', B: \'L\', C: \'F\', Prize: \'R\', Trap: \'B\', D: \'L\' }\n\n```\n',
+18 silly publish   readmeFilename: 'README.md',
+18 silly publish   gitHead: '3a95fd7fb8b42c6468443ababf8dc494347fd8d6',
+18 silly publish   _id: 'Pavlov.js@1.0.0',
+18 silly publish   _shasum: '0525b48dc5009b06a6d1aaf57686cb1d32e8cbe9',
+18 silly publish   _from: '.' }
+19 silly mapToRegistry name Pavlov.js
+20 silly mapToRegistry using default registry
+21 silly mapToRegistry registry https://registry.npmjs.org/
+22 silly mapToRegistry uri https://registry.npmjs.org/Pavlov.js
+23 verbose publish registryBase https://registry.npmjs.org/
+24 silly publish uploading /Users/nathanepstein/.npm/Pavlov.js/1.0.0/package.tgz
+25 verbose stack Error: Invalid name: "Pavlov.js"
+25 verbose stack     at ensureValidName (/usr/local/lib/node_modules/npm/node_modules/normalize-package-data/lib/fixer.js:322:15)
+25 verbose stack     at Object.module.exports.fixNameField (/usr/local/lib/node_modules/npm/node_modules/normalize-package-data/lib/fixer.js:211:5)
+25 verbose stack     at CachingRegistryClient.publish (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/publish.js:41:11)
+25 verbose stack     at /usr/local/lib/node_modules/npm/lib/publish.js:144:14
+25 verbose stack     at mapToRegistry (/usr/local/lib/node_modules/npm/lib/utils/map-to-registry.js:55:3)
+25 verbose stack     at publish_ (/usr/local/lib/node_modules/npm/lib/publish.js:114:3)
+25 verbose stack     at Array.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/slide/lib/bind-actor.js:15:8)
+25 verbose stack     at LOOP (/usr/local/lib/node_modules/npm/node_modules/slide/lib/chain.js:15:14)
+25 verbose stack     at LOOP (/usr/local/lib/node_modules/npm/node_modules/slide/lib/chain.js:14:28)
+25 verbose stack     at chain (/usr/local/lib/node_modules/npm/node_modules/slide/lib/chain.js:20:5)
+26 verbose cwd /Users/nathanepstein/Desktop/Pavlov.js
+27 error Darwin 14.3.0
+28 error argv "node" "/usr/local/bin/npm" "publish"
+29 error node v0.12.2
+30 error npm  v2.7.5
+31 error Invalid name: "Pavlov.js"
+32 error If you need help, you may report this error at:
+32 error     <https://github.com/npm/npm/issues>
+33 verbose exit [ 1, true ]
