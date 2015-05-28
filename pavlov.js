@@ -54,7 +54,7 @@ var rewardsAndTransitions = module.exports.rewardsAndTransitions = function(obse
   return [P,R];
 };
 
-function checkConverge(V,V_){
+function isConverged(V,V_){
   var totalDif = 0;
   var totalOld = 0;
   Object.keys(V).forEach(function(state){
@@ -105,7 +105,7 @@ function policyFormatted(P,R){
         V[state] = R[state] + futureVal;
       });
     });
-    notConverged = !checkConverge(V,V_);
+    notConverged = !isConverged(V,V_);
   };
   return policy;
 };
