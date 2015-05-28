@@ -1,0 +1,24 @@
+{
+  "name": "Pavlov.js",
+  "version": "1.0.0",
+  "description": "Reinforcement learning using Markov Decision Processes",
+  "main": "pavlov.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NathanEpstein/Pavlov.js.git"
+  },
+  "keywords": [
+    "learning",
+    "markov",
+    "decision"
+  ],
+  "author": "Nathan Epstein",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NathanEpstein/Pavlov.js/issues"
+  },
+  "homepage": "https://github.com/NathanEpstein/Pavlov.js"
+}
