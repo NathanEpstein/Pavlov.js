@@ -4,7 +4,7 @@
 
 ##About
 
-Pavlov.js uses Markov Decision Processes to implement reinforcement learning in JavaScript. For more on reinforcement learning, check out this <a href="http://nepste.in/jekyll/update/2015/02/22/MDP.html">blog post.</a>
+Pavlov.js uses Markov Decision Processes to implement reinforcement learning in JavaScript. For more on reinforcement learning, check out Andrew Ng's <a href="http://cs229.stanford.edu/notes/cs229-notes12.pdf">notes</a>.
 
 ## Installation
 
