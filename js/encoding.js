@@ -50,7 +50,7 @@ class StateActionEncoder {
     let state, action;
 
     for (let observation of this.observations) {
-      for (let transition of observation['state_transitions']){
+      for (let transition of observation['state_transitions']) {
         state = transition['state']
         action = transition['action']
 
