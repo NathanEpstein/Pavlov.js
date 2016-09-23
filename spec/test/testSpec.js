@@ -1,6 +1,6 @@
 'use strict';
 
-var pavlov = require('../../pavlov.js');
+var pavlov = require('../../js/pavlov.js');
 var determ = require('./deterministicData.js');
 var random = require('./randomData.js');
 
