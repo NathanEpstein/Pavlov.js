@@ -1,6 +1,6 @@
 # Pavlov.js
 
-<img src="./MDP.png">
+<img src="./img/MDP.png">
 
 ##About
 
@@ -50,7 +50,7 @@ console.log(pavlov.policy(observations, rewards));
 
 ### Example 2
 
-<img src="./example.png">
+<img src="./img/example.png">
 
 (we assume that the prize state automatically leads to a trap state which is never left)
 
