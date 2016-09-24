@@ -1,4 +1,5 @@
 class RewardParser {
+
   constructor(observations, dimensions) {
     this.observations = observations;
     this.state_count = dimensions['state_count'];
