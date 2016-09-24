@@ -1,4 +1,4 @@
-class RewardParser {
+export class RewardParser {
 
   constructor(observations, dimensions) {
     this.observations = observations;

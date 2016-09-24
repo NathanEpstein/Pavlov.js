@@ -1,4 +1,4 @@
-class TransitionParser {
+export class TransitionParser {
 
   constructor(observations, dimensions) {
     this.observations = observations;

@@ -1,4 +1,4 @@
-class StateActionEncoder {
+export class StateActionEncoder {
 
   constructor(observations) {
     this.observations = observations;
