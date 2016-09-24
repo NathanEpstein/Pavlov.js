@@ -1,24 +1,30 @@
-// gambler has a pot, will not loose if she doesn't bet. 50% chance of going broke if she does bet.
-var obs1 = [
-  {state:"notBroke", action:"notBet"},
-  {state:"notBroke", action:"bet"},
-  {state:"notBroke",action:"bet"},
-  {state:"broke", action:"hangout"},
-  {state:"broke",action:"hangout"}
-];
+var observations = [
+  {
+    state_transitions: [
+      {state:"notBroke", action:"notBet", state_: "notBroke"},
+      {state:"notBroke", action:"bet", state_: "notBroke"},
+      {state:"notBroke",action:"bet", state_: "broke"},
+      {state:"broke", action:"hangout", state_: "broke"},
+      {state:"broke",action:"hangout", state_: "broke"}
+    ],
+    reward: -1
+  },
+  {
+    state_transitions: [
+      {state:"notBroke", action:"bet", state_: "notBroke"},
+      {state:"notBroke",action:"bet", state_: "broke"},
+      {state:"broke", action:"hangout", state_: "broke"}
+    ],
+    reward: -1
+  },
+  {
+    state_transitions: [
+      {state:"notBroke", action:"notBet"},
+      {state:"notBroke", action:"notBet"},
+      {state:"notBroke", action:"notBet"}
+    ],
+    reward: 0
+  }
+]
 
-var obs2 = [
-  {state:"notBroke", action:"bet"},
-  {state:"notBroke",action:"bet"},
-  {state:"broke", action:"hangout"}
-];
-
-var obs3 = [
-  {state:"notBroke", action:"notBet"},
-  {state:"notBroke", action:"notBet"},
-  {state:"notBroke", action:"notBet"}
-];
-
-module.exports.observations = [obs1,obs2,obs3];
-module.exports.rewards = [-1,-1,0];
-
+module.exports.observations = observations;
