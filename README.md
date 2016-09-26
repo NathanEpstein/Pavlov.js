@@ -10,45 +10,7 @@ Pavlov.js uses Markov Decision Processes to implement reinforcement learning in 
 
 `npm install pavlovjs --save`
 
-
-## Documentation & Examples
-
-###Example 1
-
-```javascript
-var pavlov = require('pavlovjs');
-
-var obs1 = [
-  {state:"notBroke", action:"notBet"},
-  {state:"notBroke", action:"bet"},
-  {state:"notBroke",action:"bet"},
-  {state:"broke", action:"hangout"},
-  {state:"broke",action:"hangout"}
-];
-
-var obs2 = [
-  {state:"notBroke", action:"bet"},
-  {state:"notBroke",action:"bet"},
-  {state:"broke", action:"hangout"}
-];
-
-var obs3 = [
-  {state:"notBroke", action:"notBet"},
-  {state:"notBroke", action:"notBet"},
-  {state:"notBroke", action:"notBet"}
-];
-
-var observations = [obs1,obs2,obs3];
-var rewards = [-1,-1,0];
-
-console.log(pavlov.policy(observations, rewards));
-
-// { notBroke: 'notBet', broke: 'hangout' }
-
-```
-
-
-### Example 2
+## Example Usage
 
 <img src="./img/example.png">
 
@@ -57,19 +19,64 @@ console.log(pavlov.policy(observations, rewards));
 ```javascript
 var pavlov = require('pavlovjs');
 
-var obs1 = [{state:"A", action:"R"}, {state:"B", action:"B"}];
-var obs2 = [{state:"A", action:"B"}, {state:"C", action:"R"}];
-var obs3 = [{state:"A", action:"L"}, {state:"Prize", action:"R"}, {state:"Trap", action:"F"}];
-var obs4 = [{state:"A", action:"L"}, {state:"Prize", action:"L"},{state:"Trap", action:"B"}];
-var obs5 = [{state:"B",action:"B"},{state:"D",action:"L"}, {state: "C",action:"F"}, {state:"A",action:"R"}];
-var obs6 = [{state:"C",action:"R"},{state:"D",action:"F"},{state:"B", action:"L"}, {state:"A", action:"L"}];
+var observations = [
+  {
+    state_transitions: [
+      {state: "A",  action: "R", state_: "B" },
+      {state: "B",  action: "B", state_: "D" }
+    ],
+    reward: 0
+  },
+  {
+    state_transitions: [
+      {state: "A",  action: "B", state_: "C" },
+      {state: "C",  action: "R", state_: "D" },
+      {state: "D",  action: "B", state_: "D" },
+      {state: "D",  action: "R", state_: "D" }
+    ],
+    reward: 0
+  },
+  {
+    state_transitions: [
+      {state: "A",  action: "L", state_: "Prize" },
+      {state: "Prize",  action: "R", state_: "Trap" },
+      {state: "Trap",  action: "F", state_: "Trap" }
+    ],
+    reward: 1
+  },
+  {
+    state_transitions: [
+      {state: "A",  action: "L", state_: "Prize" },
+      {state: "Prize",  action: "L", state_: "Trap" },
+      {state: "Trap",  action: "B", state_: "Trap" }
+    ],
+    reward: 1
+  },
+  {
+    state_transitions: [
+      {state: "B", action: "B", state_: "D" },
+      {state: "D", action: "L", state_: "C" },
+      {state: "C", action: "F", state_: "A" },
+      {state: "A", action: "R", state_: "B" }
+    ],
+    reward: 0
+  },
+  {
+    state_transitions: [
+      {state: "C", action: "R", state_: "D" },
+      {state: "D", action: "F", state_: "B" },
+      {state: "B",  action: "L", state_: "A" },
+      {state: "A",  action: "L", state_: "Prize" }
+    ],
+    reward: 0
+  }
+];
 
-observations = [obs1,obs2,obs3,obs4,obs5,obs6];
-rewards = [0,0,1,1,0,0];
+var pavlov = new pavlov.model(observations);
 
-console.log(pavlov.policy(observations,rewards));
+console.log(pavlov.policy);
 
-// { A: 'L', B: 'L', C: 'F', Prize: 'R', Trap: 'B', D: 'L' }
+// { A: 'L', B: 'L', C: 'F', D: 'F', Prize: 'L', Trap: 'F' }
 
 ```
 
