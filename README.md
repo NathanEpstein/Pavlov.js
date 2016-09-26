@@ -19,6 +19,10 @@ Pavlov.js uses Markov Decision Processes to implement reinforcement learning in 
 ```javascript
 var pavlov = require('pavlovjs');
 
+// or, for ES6
+//import * as pavlov from 'pavlovjs';
+
+
 var observations = [
   {
     state_transitions: [
