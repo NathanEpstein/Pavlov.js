@@ -28,5 +28,8 @@
     "babel-cli": "^6.14.0",
     "babel-polyfill": "^6.13.0",
     "babel-preset-es2015": "^6.14.0"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.13.0"
   }
 }

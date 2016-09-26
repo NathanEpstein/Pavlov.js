@@ -1,4 +1,4 @@
-import 'babel-polyfill'
+import 'babel-polyfill';
 import StateActionEncoder from './StateActionEncoder';
 import RewardParser from './RewardParser';
 import TransitionParser from './TransitionParser'
