@@ -1,19 +1,20 @@
-import { StateActionEncoder } from 'encoding';
-import { RewardParser } from 'rewards';
-import { TransitionParser } from 'transitions';
-import { PolicyParser } from 'policy';
+import 'babel-polyfill'
+import StateActionEncoder from './StateActionEncoder';
+import RewardParser from './RewardParser';
+import TransitionParser from './TransitionParser'
+import PolicyParser from './PolicyParser';
 
-export class Pavlov {
+export default class {
   constructor(observations) {
     // encode observation data as int values
-    this.state_action_encoder = StateActionEncoder(observations);
+    this.state_action_encoder = new StateActionEncoder(observations);
     this.state_action_encoder.observations_to_int();
     let dimensions = this.state_action_encoder.parse_dimensions();
 
     // create reward, transition, and policy parsers
-    this.reward_parser = RewardParser(observations, dimensions);
-    this.transition_parser = TransitionParser(observations, dimensions);
-    this.policy_parser = PolicyParser(dimensions);
+    this.reward_parser = new RewardParser(observations, dimensions);
+    this.transition_parser = new TransitionParser(observations, dimensions);
+    this.policy_parser = new PolicyParser(dimensions);
   }
 
   learn() {

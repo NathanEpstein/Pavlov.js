@@ -1,6 +1,9 @@
 {
   "name": "pavlovjs",
   "version": "1.0.0",
+  "presets": [
+    "es2015"
+  ],
   "description": "Reinforcement learning using Markov Decision Processes",
   "main": "pavlov.js",
   "scripts": {
@@ -20,5 +23,10 @@
   "bugs": {
     "url": "https://github.com/NathanEpstein/Pavlov.js/issues"
   },
-  "homepage": "https://github.com/NathanEpstein/Pavlov.js"
+  "homepage": "https://github.com/NathanEpstein/Pavlov.js",
+  "devDependencies": {
+    "babel-cli": "^6.14.0",
+    "babel-polyfill": "^6.13.0",
+    "babel-preset-es2015": "^6.14.0"
+  }
 }

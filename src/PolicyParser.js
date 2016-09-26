@@ -1,4 +1,4 @@
-export class PolicyParser {
+export default class {
 
   constructor(dimensions) {
     this.state_count = dimensions['state_count'];

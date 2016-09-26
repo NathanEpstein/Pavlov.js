@@ -9,7 +9,9 @@ var observations = [
   {
     state_transitions: [
       {state: "A",  action: "B", state_: "C" },
-      {state: "C",  action: "R", state_: "D" }
+      {state: "C",  action: "R", state_: "D" },
+      {state: "D",  action: "B", state_: "D" },
+      {state: "D",  action: "R", state_: "D" }
     ],
     reward: 0
   },

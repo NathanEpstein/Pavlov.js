@@ -1,4 +1,4 @@
-export class TransitionParser {
+export default class {
 
   constructor(observations, dimensions) {
     this.observations = observations;

@@ -1,4 +1,4 @@
-export class StateActionEncoder {
+export default class {
 
   constructor(observations) {
     this.observations = observations;
@@ -9,7 +9,7 @@ export class StateActionEncoder {
     return {
       'state_count': this.int_to_state.length,
       'action_count': this.int_to_action.length
-    }
+    };
   }
 
   observations_to_int() {
@@ -24,14 +24,10 @@ export class StateActionEncoder {
 
   parse_encoded_policy(encoded_policy) {
     let policy = {};
-
     let index, encoded_action, state, action;
-    for (let pair of Object.entries(encoded_policy)) {
-      encoded_action = pair[0];
-      index = pair[1];
-
-      state = this.int_to_state[index];
-      action = this.int_to_action[encoded_action];
+    for (let i = 0; i < encoded_policy.length; ++i) {
+      state = this.int_to_state[i];
+      action = this.int_to_action[encoded_policy[i]];
 
       policy[state] = action;
     }
@@ -51,18 +47,18 @@ export class StateActionEncoder {
 
     for (let observation of this.observations) {
       for (let transition of observation['state_transitions']) {
-        state = transition['state']
-        action = transition['action']
+        state = transition['state'];
+        action = transition['action'];
 
         if (!state_dict.hasOwnProperty(state)) {
           state_dict[state] = state_index;
-          state_array.append(state);
+          state_array.push(state);
           state_index += 1;
         }
 
         if (!action_dict.hasOwnProperty(action)) {
           action_dict[action] = action_index;
-          action_array.append(action);
+          action_array.push(action);
           action_index += 1;
         }
 
