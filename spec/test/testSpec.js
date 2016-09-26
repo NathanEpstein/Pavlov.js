@@ -5,7 +5,7 @@ var determ = require('./deterministicData.js');
 var random = require('./randomData.js');
 
 describe('deterministic policy', function() {
-  var pav = new Pavlov.default(determ.observations);
+  var pav = new Pavlov.model(determ.observations);
   pav.learn();
 
   it('should produce the correct policy', function() {
@@ -18,7 +18,7 @@ describe('deterministic policy', function() {
 });
 
 describe('random policy', function() {
-  var pav = new Pavlov.default(random.observations);
+  var pav = new Pavlov.model(random.observations);
   pav.learn();
 
   it('should produce the correct policy', function(){

@@ -4,7 +4,7 @@ import RewardParser from './RewardParser';
 import TransitionParser from './TransitionParser'
 import PolicyParser from './PolicyParser';
 
-export default class {
+export class model {
   constructor(observations) {
     // encode observation data as int values
     this.state_action_encoder = new StateActionEncoder(observations);
