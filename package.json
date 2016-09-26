@@ -5,7 +5,7 @@
     "es2015"
   ],
   "description": "Reinforcement learning using Markov Decision Processes",
-  "main": "pavlov.js",
+  "main": "./lib/Pavlov.js",
   "scripts": {
     "test": "jasmine"
   },
