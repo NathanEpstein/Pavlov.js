@@ -15,9 +15,11 @@ export class model {
     this.reward_parser = new RewardParser(observations, dimensions);
     this.transition_parser = new TransitionParser(observations, dimensions);
     this.policy_parser = new PolicyParser(dimensions);
+
+    this._learn();
   }
 
-  learn() {
+  _learn() {
     let R = this.reward_parser.rewards();
     let P = this.transition_parser.transition_probabilities();
 

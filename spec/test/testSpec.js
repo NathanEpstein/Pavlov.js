@@ -6,7 +6,6 @@ var random = require('./randomData.js');
 
 describe('deterministic policy', function() {
   var pav = new Pavlov.model(determ.observations);
-  pav.learn();
 
   it('should produce the correct policy', function() {
     expect(pav.policy['A']).toBe('L');
@@ -19,7 +18,6 @@ describe('deterministic policy', function() {
 
 describe('random policy', function() {
   var pav = new Pavlov.model(random.observations);
-  pav.learn();
 
   it('should produce the correct policy', function(){
     expect(pav.policy['notBroke']).toBe('notBet');

@@ -72,9 +72,9 @@ var observations = [
   }
 ];
 
-var pavlov = new pavlov.model(observations);
+var pav = new pavlov.model(observations);
 
-console.log(pavlov.policy);
+console.log(pav.policy);
 
 // { A: 'L', B: 'L', C: 'F', D: 'F', Prize: 'L', Trap: 'F' }
 
