@@ -1,3 +1,8 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
 struct state_transition {
   string state;
   int encoded_state;
