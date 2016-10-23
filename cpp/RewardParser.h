@@ -1,3 +1,6 @@
+#ifndef REWARD_PARSER
+#define REWARD_PARSER
+
 #include <vector>
 #include "DataStructures.h"
 
@@ -16,3 +19,5 @@ class RewardParser {
 inline RewardParser::RewardParser(vector<observation> &obs, int state_count)
   : d_obs(obs),
     d_state_count(state_count) {}
+
+#endif

@@ -16,7 +16,7 @@ tensor TransitionParser::transition_probabilities() {
 
 tensor TransitionParser::count_transitions() {
 
-  tensor transition_count = makeTensor(d_state_count, d_action_count)
+  tensor transition_count = makeTensor(d_state_count, d_action_count);
 
   obs_iter obs_it = d_obs.begin();
   while (obs_it != d_obs.end()) {
@@ -33,10 +33,10 @@ tensor TransitionParser::count_transitions() {
     ++obs_it;
   }
 
-  return transition_count
+  return transition_count;
 }
 
-tensor parse_probabilities(tensor &transition_count) {
+tensor TransitionParser::parse_probabilities(tensor &transition_count) {
 
   tensor P = makeTensor(d_state_count, d_action_count);
 
@@ -64,5 +64,5 @@ tensor parse_probabilities(tensor &transition_count) {
     }
   }
 
-  return P
+  return P;
 }

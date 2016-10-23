@@ -1,3 +1,6 @@
+#ifndef POLICY_PARSER
+#define POLICY_PARSER
+
 #include <limits>
 #include <vector>
 #include "DataStructures.h"
@@ -17,3 +20,5 @@ class PolicyParser {
 inline PolicyParser::PolicyParser(int state_count, int action_count)
   : d_state_count(state_count),
     d_action_count(action_count) {}
+
+#endif
