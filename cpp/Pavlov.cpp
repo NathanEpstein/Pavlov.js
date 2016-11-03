@@ -30,6 +30,15 @@ void Pavlov::learn() {
 
   // learn int-encoded policy and convert to readable dictionary
   vector<int> encoded_policy = d_policy_parser -> policy(P, R);
-  map<string, string> d_policy = d_state_action_encoder -> parse_encoded_policy(encoded_policy);
+  d_policy = d_state_action_encoder -> parse_encoded_policy(encoded_policy);
+}
+
+std::string Pavlov::action(const std::string &state) const {
+  if (d_policy.find(state) == d_policy.end()) {
+    return "UNKNOWN_STATE";
+  }
+  else {
+    return d_policy.find(state) -> second;
+  }
 }
 
