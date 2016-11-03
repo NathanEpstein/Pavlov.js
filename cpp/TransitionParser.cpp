@@ -1,13 +1,12 @@
 #include "TransitionParser.h"
 
-TransitionParser::TransitionParser(vector<observation> &observations,
-                 int state_count,
-                 int action_count)
-{
-  d_obs = observations;
-  d_state_count = state_count;
-  d_action_count = action_count;
-}
+TransitionParser::TransitionParser(
+  vector<observation> &observations,
+  int state_count,
+  int action_count)
+  : d_obs(observations),
+    d_state_count(state_count),
+    d_action_count(action_count) {}
 
 tensor TransitionParser::transition_probabilities() {
   tensor transition_count = count_transitions();

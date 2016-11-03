@@ -4,8 +4,8 @@ Pavlov::Pavlov(vector<observation>& observations) {
   // encode observation data as int values
   d_state_action_encoder = new StateActionEncoder(observations);
   d_state_action_encoder -> observations_to_int();
-  int state_count = d_state_action_encoder -> state_count();
-  int action_count = d_state_action_encoder -> action_count();
+  const int state_count = d_state_action_encoder -> state_count();
+  const int action_count = d_state_action_encoder -> action_count();
 
   // create reward, transition, and policy parsers
   d_reward_parser = new RewardParser(observations, state_count);

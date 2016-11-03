@@ -13,7 +13,7 @@ class RewardParser {
 
   private:
     vector<observation> d_obs;
-    int d_state_count;
+    const int d_state_count;
 };
 
 inline RewardParser::RewardParser(vector<observation> &obs, int state_count)

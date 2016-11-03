@@ -12,14 +12,12 @@ public:
   tensor transition_probabilities();
 
 private:
-
   vector<observation> d_obs;
-  int d_state_count;
-  int d_action_count;
+  const int d_state_count;
+  const int d_action_count;
 
   tensor count_transitions();
   tensor parse_probabilities(tensor &transition_count);
-
 };
 
 #endif
