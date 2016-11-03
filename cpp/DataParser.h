@@ -15,12 +15,12 @@ using namespace std;
 class DataParser {
   public:
     DataParser(const string &filepath);
-    void parse_observations(vector<observation>& obs);
+    void parse_observations(vector<observation>& obs) const;
 
   private:
     string d_filepath;
-    vector<string> split(const string &s, char delim);
-    observation parse_obs_line(const string &obs_string);
+    vector<string> split(const string &s, char delim) const;
+    observation parse_obs_line(const string &obs_string) const;
 };
 
 #endif

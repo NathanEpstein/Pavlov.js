@@ -4,7 +4,7 @@ DataParser::DataParser(const string &filepath) {
   d_filepath = filepath;
 }
 
-vector<string> DataParser::split(const string &s, char delim) {
+vector<string> DataParser::split(const string &s, char delim) const {
     vector<string> elems;
     stringstream ss;
 
@@ -16,7 +16,7 @@ vector<string> DataParser::split(const string &s, char delim) {
     return elems;
 }
 
-observation DataParser::parse_obs_line(const string &obs_string) {
+observation DataParser::parse_obs_line(const string &obs_string) const {
   vector<string> obs_elems = split(obs_string, ',');
   observation o;
 
@@ -35,7 +35,7 @@ observation DataParser::parse_obs_line(const string &obs_string) {
   return o;
 }
 
-void DataParser::parse_observations(vector<observation> &obs) {
+void DataParser::parse_observations(vector<observation> &obs) const {
   ifstream infile(d_filepath);
   string line;
   while(getline(infile, line)) {
