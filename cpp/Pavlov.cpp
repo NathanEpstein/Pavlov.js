@@ -30,11 +30,11 @@ Pavlov::~Pavlov() {
 }
 
 void Pavlov::learn() {
-  vector<double> R = d_reward_parser -> rewards();
+  std::vector<double> R = d_reward_parser -> rewards();
   tensor P = d_transition_parser -> transition_probabilities();
 
   // learn int-encoded policy and convert to readable dictionary
-  vector<int> encoded_policy = d_policy_parser -> policy(P, R);
+  std::vector<int> encoded_policy = d_policy_parser -> policy(P, R);
   d_policy = d_state_action_encoder -> parse_encoded_policy(encoded_policy);
 }
 

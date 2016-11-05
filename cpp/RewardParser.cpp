@@ -1,8 +1,8 @@
 #include "RewardParser.h"
 
-vector<double> RewardParser::rewards() const {
-  vector<double> total_state_rewards(d_state_count);
-  vector<int> total_state_visits(d_state_count);
+std::vector<double> RewardParser::rewards() const {
+  std::vector<double> total_state_rewards(d_state_count);
+  std::vector<int> total_state_visits(d_state_count);
 
   const_obs_iter obs_it = d_obs.begin();
   while (obs_it != d_obs.end()) {
@@ -21,7 +21,7 @@ vector<double> RewardParser::rewards() const {
     ++obs_it;
   }
 
-  vector<double> average_state_rewards;
+  std::vector<double> average_state_rewards;
   for (int i = 0; i < d_state_count; ++i) {
     double state_reward = total_state_rewards[i];
     if(total_state_visits[i] > 0) state_reward /= total_state_visits[i];

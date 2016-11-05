@@ -23,7 +23,7 @@ private:
   TransitionParser* d_transition_parser;
   PolicyParser* d_policy_parser;
 
-  map<string, string> d_policy;
+  std::map<std::string, std::string> d_policy;
 
   void learn();
 

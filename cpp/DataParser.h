@@ -10,17 +10,15 @@
 
 #include "DataStructures.h"
 
-using namespace std;
-
 class DataParser {
   public:
-    DataParser(const string &filepath);
-    void parse_observations(vector<observation>& obs) const;
+    DataParser(const std::string &filepath);
+    void parse_observations(std::vector<observation>& obs) const;
 
   private:
-    string d_filepath;
-    vector<string> split(const string &s, char delim) const;
-    observation parse_obs_line(const string &obs_string) const;
+    std::string d_filepath;
+    std::vector<std::string> split(const std::string &s, char delim) const;
+    observation parse_obs_line(const std::string &obs_string) const;
 };
 
 #endif

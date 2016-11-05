@@ -1,6 +1,6 @@
 #include "StateActionEncoder.h"
 
-StateActionEncoder::StateActionEncoder(vector<observation> &observations) {
+StateActionEncoder::StateActionEncoder(std::vector<observation> &observations) {
   d_observations = observations;
 
   _parse_states_and_actions();
@@ -33,12 +33,12 @@ void StateActionEncoder::observations_to_int() {
   }
 }
 
-map<string, string> StateActionEncoder::parse_encoded_policy(
-  const vector<int> &encoded_policy) const
+std::map<std::string, std::string> StateActionEncoder::parse_encoded_policy(
+  const std::vector<int> &encoded_policy) const
 {
-  map<string, string> policy;
+  std::map<std::string, std::string> policy;
 
-  string state, action;
+  std::string state, action;
   for (int i = 0; i < encoded_policy.size(); ++i) {
     state = d_int_to_state[i];
     action = d_int_to_action[encoded_policy[i]];
@@ -53,7 +53,7 @@ void StateActionEncoder::_parse_states_and_actions() {
   int state_index = 0;
   int action_index = 0;
 
-  string state, action;
+  std::string state, action;
 
   obs_iter obs_it = d_observations.begin();
   while (obs_it != d_observations.end()) {

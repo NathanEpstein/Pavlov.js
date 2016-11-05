@@ -1,12 +1,12 @@
 #include "PolicyParser.h"
 
-vector<int> PolicyParser::policy(tensor &P, vector<double> &rewards) const
+std::vector<int> PolicyParser::policy(tensor &P, std::vector<double> &rewards) const
 {
   const double GAMMA = 0.9;
   const int ITERATIONS = 125;
 
-  vector<int> best_policy(d_state_count);
-  vector<int> state_values(d_state_count);
+  std::vector<int> best_policy(d_state_count);
+  std::vector<int> state_values(d_state_count);
 
   for (int i = 0; i < ITERATIONS; ++i) {
     for (int state = 0; state < d_state_count; ++state) {

@@ -5,12 +5,10 @@
 #include <vector>
 #include "DataStructures.h"
 
-using namespace std;
-
 class PolicyParser {
   public:
     PolicyParser(int state_count, int action_count);
-    vector<int> policy(tensor &P, vector<double> &rewards) const;
+    std::vector<int> policy(tensor &P, std::vector<double> &rewards) const;
 
   private:
     const int d_state_count;
