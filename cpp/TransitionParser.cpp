@@ -1,7 +1,7 @@
 #include "TransitionParser.h"
 
 TransitionParser::TransitionParser(
-  vector<observation> &observations,
+  std::vector<observation> &observations,
   int state_count,
   int action_count)
   : d_obs(observations),
