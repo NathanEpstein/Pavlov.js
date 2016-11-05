@@ -6,6 +6,9 @@
 #include "RewardParser.h"
 #include "TransitionParser.h"
 #include "PolicyParser.h"
+#include <emscripten/bind.h>
+
+using namespace emscripten;
 
 class Pavlov {
 
@@ -28,5 +31,12 @@ private:
   void learn();
 
 };
+
+EMSCRIPTEN_BINDINGS(pavlov) {
+  class_<Pavlov>("Pavlov")
+    .constructor<const std::string&>()
+    .function("action", &Pavlov::action)
+    ;
+}
 
 #endif
