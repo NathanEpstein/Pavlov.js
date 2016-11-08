@@ -3,7 +3,7 @@
 Pavlov::Pavlov(const std::string& filepath) {
   // read the observations from the input file
   d_data_parser = new DataParser(filepath);
-  d_data_parser.parse_observations(d_observations);
+  d_data_parser -> parse_observations(d_observations);
 
   // encode observation data as int values
   d_state_action_encoder = new StateActionEncoder(d_observations);
@@ -46,4 +46,21 @@ std::string Pavlov::action(const std::string &state) const {
     return d_policy.find(state) -> second;
   }
 }
+
+// #include <emscripten/bind.h>
+
+// using namespace emscripten;
+
+// EMSCRIPTEN_BINDINGS(pavlov) {
+//   class_<Pavlov>("Pavlov")
+//     .constructor<const std::string&>()
+//     .function("action", &Pavlov::action)
+//     ;
+// }
+
+int main() {
+  std::cout << "hello\n";
+
+}
+
 
