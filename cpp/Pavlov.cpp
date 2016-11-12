@@ -1,4 +1,7 @@
 #include "Pavlov.h"
+#include <emscripten/bind.h>
+
+using namespace emscripten;
 
 Pavlov::Pavlov(const std::string& filepath) {
   // read the observations from the input file
@@ -47,17 +50,11 @@ std::string Pavlov::action(const std::string &state) const {
   }
 }
 
-#include <emscripten/bind.h>
-
-using namespace emscripten;
-
 EMSCRIPTEN_BINDINGS(pavlov) {
   class_<Pavlov>("Pavlov")
     .constructor<const std::string&>()
     .function("action", &Pavlov::action)
     ;
 }
-
-
 
 
