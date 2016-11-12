@@ -6,7 +6,7 @@
 
 class StateActionEncoder {
   public:
-    StateActionEncoder(std::vector<observation> &observations);
+    StateActionEncoder(std::vector<observation> *observations);
     int state_count() const;
     int action_count() const;
     void observations_to_int();
@@ -20,7 +20,7 @@ class StateActionEncoder {
     std::map<std::string, int> d_action_to_int;
     std::vector<std::string> d_int_to_state;
     std::vector<std::string> d_int_to_action;
-    std::vector<observation> d_observations;
+    std::vector<observation>* d_observations;
 };
 
 #endif

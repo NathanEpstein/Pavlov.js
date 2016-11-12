@@ -8,7 +8,7 @@
 class PolicyParser {
   public:
     PolicyParser(int state_count, int action_count);
-    std::vector<int> policy(tensor &P, std::vector<double> &rewards) const;
+    std::vector<int> policy(const tensor &P, const std::vector<double> &rewards) const;
 
   private:
     const int d_state_count;

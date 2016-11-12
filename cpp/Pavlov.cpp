@@ -6,14 +6,14 @@ Pavlov::Pavlov(const std::string& filepath) {
   d_data_parser -> parse_observations(d_observations);
 
   // encode observation data as int values
-  d_state_action_encoder = new StateActionEncoder(d_observations);
+  d_state_action_encoder = new StateActionEncoder(&d_observations);
   d_state_action_encoder -> observations_to_int();
   const int state_count = d_state_action_encoder -> state_count();
   const int action_count = d_state_action_encoder -> action_count();
 
   // create reward, transition, and policy parsers
-  d_reward_parser = new RewardParser(d_observations, state_count);
-  d_transition_parser = new TransitionParser(d_observations,
+  d_reward_parser = new RewardParser(&d_observations, state_count);
+  d_transition_parser = new TransitionParser(&d_observations,
                                              state_count,
                                              action_count);
   d_policy_parser = new PolicyParser(state_count, action_count);
@@ -47,20 +47,17 @@ std::string Pavlov::action(const std::string &state) const {
   }
 }
 
-// #include <emscripten/bind.h>
+#include <emscripten/bind.h>
 
-// using namespace emscripten;
+using namespace emscripten;
 
-// EMSCRIPTEN_BINDINGS(pavlov) {
-//   class_<Pavlov>("Pavlov")
-//     .constructor<const std::string&>()
-//     .function("action", &Pavlov::action)
-//     ;
-// }
-
-int main() {
-  std::cout << "hello\n";
-
+EMSCRIPTEN_BINDINGS(pavlov) {
+  class_<Pavlov>("Pavlov")
+    .constructor<const std::string&>()
+    .function("action", &Pavlov::action)
+    ;
 }
+
+
 
 

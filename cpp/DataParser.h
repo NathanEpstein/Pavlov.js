@@ -1,7 +1,6 @@
 #ifndef DATA_PARSER
 #define DATA_PARSER
 
-#include <iostream>
 #include <vector>
 #include <string>
 #include <sstream>

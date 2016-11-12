@@ -1,6 +1,8 @@
 #include "PolicyParser.h"
 
-std::vector<int> PolicyParser::policy(tensor &P, std::vector<double> &rewards) const
+std::vector<int> PolicyParser::policy(
+  const tensor &P,
+  const std::vector<double> &rewards) const
 {
   const double GAMMA = 0.9;
   const int ITERATIONS = 125;

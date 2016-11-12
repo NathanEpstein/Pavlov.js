@@ -1,8 +1,8 @@
 #include "StateActionEncoder.h"
 
-StateActionEncoder::StateActionEncoder(std::vector<observation> &observations) {
-  d_observations = observations;
-
+StateActionEncoder::StateActionEncoder(
+  std::vector<observation> *observations) : d_observations(observations)
+{
   _parse_states_and_actions();
 }
 
@@ -15,10 +15,9 @@ int StateActionEncoder::action_count() const {
 }
 
 void StateActionEncoder::observations_to_int() {
-  obs_iter obs_it = d_observations.begin();
-  while (obs_it != d_observations.end()) {
+  obs_iter obs_it = d_observations -> begin();
+  while (obs_it != d_observations -> end()) {
     int visits = obs_it -> state_transitions.size();
-    double reward_per_visit = (obs_it -> reward) / visits;
 
     trans_iter trans_it = obs_it -> state_transitions.begin();
     while (trans_it != obs_it -> state_transitions.end()) {
@@ -55,24 +54,25 @@ void StateActionEncoder::_parse_states_and_actions() {
 
   std::string state, action;
 
-  obs_iter obs_it = d_observations.begin();
-  while (obs_it != d_observations.end()) {
+  obs_iter obs_it = d_observations -> begin();
+  while (obs_it != d_observations -> end()) {
     trans_iter trans_it = obs_it -> state_transitions.begin();
     while (trans_it != obs_it -> state_transitions.end()) {
       state = trans_it -> state;
       action = trans_it -> action;
 
-      if (d_state_to_int.find(state) != d_state_to_int.end()) {
+      if (d_state_to_int.find(state) == d_state_to_int.end()) {
         d_state_to_int[state] = state_index;
         d_int_to_state.push_back(state);
         state_index += 1;
       }
 
-      if (d_action_to_int.find(action) != d_action_to_int.end()) {
+      if (d_action_to_int.find(action) == d_action_to_int.end()) {
         d_action_to_int[action] = action_index;
         d_int_to_action.push_back(action);
         action_index += 1;
       }
+
       ++trans_it;
     }
     ++obs_it;

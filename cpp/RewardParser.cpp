@@ -4,8 +4,8 @@ std::vector<double> RewardParser::rewards() const {
   std::vector<double> total_state_rewards(d_state_count);
   std::vector<int> total_state_visits(d_state_count);
 
-  const_obs_iter obs_it = d_obs.begin();
-  while (obs_it != d_obs.end()) {
+  const_obs_iter obs_it = d_obs -> begin();
+  while (obs_it != d_obs -> end()) {
     int visits = obs_it -> state_transitions.size();
     double reward_per_visit = (obs_it -> reward) / visits;
 

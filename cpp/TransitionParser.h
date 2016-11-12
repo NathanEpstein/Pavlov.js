@@ -6,13 +6,13 @@
 class TransitionParser {
 
 public:
-  TransitionParser(std::vector<observation> &observations,
+  TransitionParser(std::vector<observation> *observations,
                    int state_count,
                    int action_count);
   tensor transition_probabilities();
 
 private:
-  std::vector<observation> d_obs;
+  std::vector<observation>* d_obs;
   const int d_state_count;
   const int d_action_count;
 

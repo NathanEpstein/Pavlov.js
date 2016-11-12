@@ -1,7 +1,7 @@
 #include "TransitionParser.h"
 
 TransitionParser::TransitionParser(
-  std::vector<observation> &observations,
+  std::vector<observation> *observations,
   int state_count,
   int action_count)
   : d_obs(observations),
@@ -17,8 +17,8 @@ tensor TransitionParser::count_transitions() {
 
   tensor transition_count = makeTensor(d_state_count, d_action_count);
 
-  obs_iter obs_it = d_obs.begin();
-  while (obs_it != d_obs.end()) {
+  obs_iter obs_it = d_obs -> begin();
+  while (obs_it != d_obs -> end()) {
     trans_iter trans_it = obs_it -> state_transitions.begin();
     while (trans_it != obs_it -> state_transitions.end()) {
       int state = trans_it -> encoded_state;
