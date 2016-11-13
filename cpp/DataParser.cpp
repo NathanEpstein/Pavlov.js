@@ -1,6 +1,7 @@
 #include "DataParser.h"
+#include <iostream>
 
-DataParser::DataParser(const std::string &filepath) : d_filepath(filepath) {}
+DataParser::DataParser() {}
 
 std::vector<std::string> DataParser::split(const std::string &s, char delim) const {
     std::vector<std::string> elems;
@@ -15,7 +16,7 @@ std::vector<std::string> DataParser::split(const std::string &s, char delim) con
 }
 
 observation DataParser::parse_obs_line(const std::string &obs_string) const {
-  std::vector<std::string> obs_elems = split(obs_string, ',');
+  std::vector<std::string> obs_elems = split(obs_string, '#');
   observation o;
 
   int index = 0;
@@ -31,12 +32,4 @@ observation DataParser::parse_obs_line(const std::string &obs_string) const {
 
   o.reward = atof(obs_elems[index + 1].c_str());
   return o;
-}
-
-void DataParser::parse_observations(std::vector<observation> &obs) const {
-  std::ifstream infile(d_filepath);
-  std::string line;
-  while(getline(infile, line)) {
-    obs.push_back(parse_obs_line(line));
-  }
 }

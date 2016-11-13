@@ -1,13 +1,20 @@
 #include "Pavlov.h"
 #include <emscripten/bind.h>
-
 using namespace emscripten;
 
-Pavlov::Pavlov(const std::string& filepath) {
-  // read the observations from the input file
-  d_data_parser = new DataParser(filepath);
-  d_data_parser -> parse_observations(d_observations);
+Pavlov::Pavlov() {
+  d_data_parser = new DataParser();
+}
 
+Pavlov::~Pavlov() {
+  delete d_data_parser;
+  delete d_state_action_encoder;
+  delete d_reward_parser;
+  delete d_transition_parser;
+  delete d_policy_parser;
+}
+
+void Pavlov::scaffold() {
   // encode observation data as int values
   d_state_action_encoder = new StateActionEncoder(&d_observations);
   d_state_action_encoder -> observations_to_int();
@@ -20,19 +27,19 @@ Pavlov::Pavlov(const std::string& filepath) {
                                              state_count,
                                              action_count);
   d_policy_parser = new PolicyParser(state_count, action_count);
-
-  learn();
 }
 
-Pavlov::~Pavlov() {
-  delete d_data_parser;
-  delete d_state_action_encoder;
-  delete d_reward_parser;
-  delete d_transition_parser;
-  delete d_policy_parser;
+void Pavlov::observe(const std::string &obs_string) {
+  d_observations.push_back(
+    d_data_parser -> parse_obs_line(obs_string)
+  );
 }
 
 void Pavlov::learn() {
+  // build internal classes used for learning
+  scaffold();
+
+  // parse rewards and transitions
   std::vector<double> R = d_reward_parser -> rewards();
   tensor P = d_transition_parser -> transition_probabilities();
 
@@ -52,7 +59,9 @@ std::string Pavlov::action(const std::string &state) const {
 
 EMSCRIPTEN_BINDINGS(pavlov) {
   class_<Pavlov>("Pavlov")
-    .constructor<const std::string&>()
+    .constructor<>()
+    .function("observe", &Pavlov::observe)
+    .function("learn", &Pavlov::learn)
     .function("action", &Pavlov::action)
     ;
 }
