@@ -1,9 +1,6 @@
 {
   "name": "pavlovjs",
   "version": "2.0.3",
-  "presets": [
-    "es2015"
-  ],
   "description": "Reinforcement learning using Markov Decision Processes",
   "main": "./lib/Pavlov.js",
   "scripts": {
