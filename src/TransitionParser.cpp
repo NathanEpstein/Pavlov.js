@@ -8,12 +8,12 @@ TransitionParser::TransitionParser(
     d_state_count(state_count),
     d_action_count(action_count) {}
 
-tensor TransitionParser::transition_probabilities() {
+tensor TransitionParser::transition_probabilities() const {
   tensor transition_count = count_transitions();
   return parse_probabilities(transition_count);
 }
 
-tensor TransitionParser::count_transitions() {
+tensor TransitionParser::count_transitions() const {
 
   tensor transition_count = makeTensor(d_state_count, d_action_count);
 
@@ -35,7 +35,7 @@ tensor TransitionParser::count_transitions() {
   return transition_count;
 }
 
-tensor TransitionParser::parse_probabilities(tensor &transition_count) {
+tensor TransitionParser::parse_probabilities(tensor &transition_count) const {
 
   tensor P = makeTensor(d_state_count, d_action_count);
 

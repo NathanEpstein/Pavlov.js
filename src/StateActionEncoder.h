@@ -9,7 +9,7 @@ class StateActionEncoder {
     StateActionEncoder(std::vector<observation> *observations);
     int state_count() const;
     int action_count() const;
-    void observations_to_int();
+    void observations_to_int() const;
     std::map<std::string, std::string> parse_encoded_policy(
       const std::vector<int> &encoded_policy) const;
 

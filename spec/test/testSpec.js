@@ -10,7 +10,7 @@ describe('policy', function() {
   pavlov.observe("A#B#C#R#D#B#D#R#D#0");
   pavlov.observe("B#B#D#L#C#F#A#R#B#0");
   pavlov.observe("C#R#D#F#B#L#A#L#Prize#0");
-  pavlov.observe("A#L#Prize#L#Trap#B#Trap#3");
+  pavlov.observe("A#L#Prize#L#Trap#B#Trap#1");
   pavlov.learn();
 
   it('should produce the correct policy', function() {

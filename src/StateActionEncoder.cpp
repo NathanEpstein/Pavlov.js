@@ -14,16 +14,16 @@ int StateActionEncoder::action_count() const {
   return d_int_to_action.size();
 }
 
-void StateActionEncoder::observations_to_int() {
+void StateActionEncoder::observations_to_int() const {
   obs_iter obs_it = d_observations -> begin();
   while (obs_it != d_observations -> end()) {
     int visits = obs_it -> state_transitions.size();
 
     trans_iter trans_it = obs_it -> state_transitions.begin();
     while (trans_it != obs_it -> state_transitions.end()) {
-      trans_it -> encoded_state = d_state_to_int[trans_it -> state];
-      trans_it -> encoded_state_ = d_state_to_int[trans_it -> state_];
-      trans_it -> encoded_action = d_action_to_int[trans_it -> action];
+      trans_it -> encoded_state = d_state_to_int.find(trans_it -> state) -> second;
+      trans_it -> encoded_state_ = d_state_to_int.find(trans_it -> state_) -> second;
+      trans_it -> encoded_action = d_action_to_int.find(trans_it -> action) -> second;
 
       ++trans_it;
     }

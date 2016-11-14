@@ -8,7 +8,7 @@ std::vector<int> PolicyParser::policy(
   const int ITERATIONS = 125;
 
   std::vector<int> best_policy(d_state_count);
-  std::vector<int> state_values(d_state_count);
+  std::vector<double> state_values(d_state_count);
 
   for (int i = 0; i < ITERATIONS; ++i) {
     for (int state = 0; state < d_state_count; ++state) {
