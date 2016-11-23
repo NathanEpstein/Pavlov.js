@@ -10,6 +10,10 @@ Pavlov.js uses Markov Decision Processes to implement reinforcement learning. It
 
 `npm install pavlovjs --save`
 
+## Compilation
+
+To compile the JS file from the C++ code in `src`, simply run `emcc --bind -o lib/Pavlov.js src/*.cpp`
+
 ## Example Usage
 
 <img src="./img/example.png">
