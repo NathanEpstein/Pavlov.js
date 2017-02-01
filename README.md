@@ -25,14 +25,38 @@ var module = require('pavlovjs');
 
 var pavlov = new module.Pavlov();
 
-// state1#action1#state2 ... #stateN#reward
-pavlov.observe("A#R#B#B#D#0");
-pavlov.observe("A#B#C#R#D#B#D#R#D#0");
-pavlov.observe("B#B#D#L#C#F#A#R#B#0");
-pavlov.observe("C#R#D#F#B#L#A#L#Prize#0");
-pavlov.observe("A#L#Prize#L#Trap#B#Trap#1");
+// transitions and rewards
+pavlov.transition({ "state": "A", "action": "R", "state_": "B" });
+pavlov.transition({ "state": "B", "action": "B", "state_": "D" });
+pavlov.reward(0);
+
+pavlov.transition({ "state": "A", "action": "B", "state_": "C" });
+pavlov.transition({ "state": "C", "action": "R", "state_": "D" });
+pavlov.transition({ "state": "D", "action": "B", "state_": "D" });
+pavlov.transition({ "state": "D", "action": "R", "state_": "D" });
+pavlov.reward(0);
+
+pavlov.transition({ "state": "B", "action": "B", "state_": "D" });
+pavlov.transition({ "state": "D", "action": "L", "state_": "C" });
+pavlov.transition({ "state": "C", "action": "F", "state_": "A" });
+pavlov.transition({ "state": "A", "action": "R", "state_": "B" });
+pavlov.reward(0);
+
+pavlov.transition({ "state": "C", "action": "R", "state_": "D" });
+pavlov.transition({ "state": "D", "action": "F", "state_": "B" });
+pavlov.transition({ "state": "B", "action": "L", "state_": "A" });
+pavlov.transition({ "state": "A", "action": "L", "state_": "Prize" });
+pavlov.reward(0);
+
+pavlov.transition({ "state": "A", "action": "L", "state_": "Prize" });
+pavlov.transition({ "state": "Prize", "action": "L", "state_": "Trap" });
+pavlov.transition({ "state": "Trap", "action": "B", "state_": "Trap" });
+pavlov.reward(1);
+
+// learn from observations
 pavlov.learn();
 
+//policy
 console.log(pavlov.action('A')); //L
 console.log(pavlov.action('B')); //L
 console.log(pavlov.action('C')); //F
