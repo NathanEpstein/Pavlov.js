@@ -3,15 +3,15 @@
 using namespace emscripten;
 
 Pavlov::Pavlov() {
-  d_data_parser = new DataParser();
+  d_current_observation = new observation();
 }
 
 Pavlov::~Pavlov() {
-  delete d_data_parser;
   delete d_state_action_encoder;
   delete d_reward_parser;
   delete d_transition_parser;
   delete d_policy_parser;
+  delete d_current_observation;
 }
 
 void Pavlov::scaffold() {
@@ -29,10 +29,14 @@ void Pavlov::scaffold() {
   d_policy_parser = new PolicyParser(state_count, action_count);
 }
 
-void Pavlov::observe(const std::string &obs_string) {
-  d_observations.push_back(
-    d_data_parser -> parse_obs_line(obs_string)
-  );
+void Pavlov::transition(state_transition trans) {
+  d_current_observation -> state_transitions.push_back(trans);
+}
+
+void Pavlov::reward(double value) {
+  d_current_observation -> reward = value;
+  d_observations.push_back(*d_current_observation);
+  d_current_observation = new observation;
 }
 
 void Pavlov::learn() {
@@ -60,9 +64,16 @@ std::string Pavlov::action(const std::string &state) const {
 EMSCRIPTEN_BINDINGS(pavlov) {
   class_<Pavlov>("Pavlov")
     .constructor<>()
-    .function("observe", &Pavlov::observe)
+    .function("transition", &Pavlov::transition)
+    .function("reward", &Pavlov::reward)
     .function("learn", &Pavlov::learn)
     .function("action", &Pavlov::action)
+    ;
+
+  value_object<state_transition>("state_transition")
+    .field("state", &state_transition::state)
+    .field("state_", &state_transition::state_)
+    .field("action", &state_transition::action)
     ;
 }
 
